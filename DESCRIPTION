@@ -17,7 +17,9 @@ RoxygenNote: 7.1.1
 URL: https://github.com/monkeychex3/pkgTesting
 BugReports: https://github.com/monkeychex3/pkgTesting/issues
 Imports: 
+    vroom,
+    COVID19
+Depends:
     ggplot2,
     dplyr,
-    shiny,
-    vroom
+    shiny
