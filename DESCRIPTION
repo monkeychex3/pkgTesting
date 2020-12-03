@@ -4,13 +4,12 @@ Version: 0.0.0.9000
 Authors@R: 
     person(given = "Adam",
            family = "Coger",
-           role = "aut",
+           role = c("aut", "cre"),
            email = "acoger@bgsu.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package is to hold a Shiny app for making and viewing graphs
   about COVID-19 in the United States.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
