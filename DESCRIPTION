@@ -1,16 +1,19 @@
 Package: pkgTesting
-Title: What the Package Does (One Line, Title Case)
+Title: Example COVID-19 Data Viewer
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
+    person(given = "Adam",
+           family = "Coger",
+           role = "aut",
+           email = "acoger@bgsu.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: This package is to hold a Shiny app for making and viewing graphs
+  about COVID-19 in the United States.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+URL: https://github.com/monkeychex3/pkgTesting
+BugReports: https://github.com/monkeychex3/pkgTesting/issues
