@@ -2,6 +2,7 @@
 
 app_ui <- function() {
   fluidPage(
+    theme = shinythemes::shinytheme("darkly"),
     navbarPage(
       title = "This is Navbar placeholder text",
       tabPanel(
