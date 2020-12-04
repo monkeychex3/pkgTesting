@@ -1,3 +1,5 @@
 #' @import shiny
 
-#shinyApp(ui = ui, server = server)
+run <- function() {
+  shinyApp(ui = app_ui, server = app_server)
+}
