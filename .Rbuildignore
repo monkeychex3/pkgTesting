@@ -1,3 +1,4 @@
 ^pkgTesting\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^launcher\.R$
