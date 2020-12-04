@@ -1,9 +1,10 @@
 #' @import shiny
 
 app_server <- function(input, output, session) {
-  output$selectPlaceholder <- renderText("safety text for select tab")
+  output$statesPlaceholder <- renderText("safety text for states tab")
   output$editPlaceholder <- renderText("safety text for edit tab")
   output$graphPlaceholder <- renderText("safety text for graph tab")
+  output$datesPlaceholder <- renderText("safety text for dates tab")
 
   cdata <- eventReactive(input$load,{
     temp <- COVID19::covid19(
@@ -15,6 +16,7 @@ app_server <- function(input, output, session) {
   })
 
   output$summary <- renderPrint({
+    width = 7
     summary(
       cdata()[cdata()$administrative_area_level_2 %in% input$state, ]
     )

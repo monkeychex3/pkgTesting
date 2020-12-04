@@ -1,39 +1,50 @@
 #' @import shiny
 
 app_ui <- function() {
-  # fluidPage(
-  #   theme = shinythemes::shinytheme("darkly")
-  # )
   navbarPage(
     title = "This is Navbar placeholder text",
     theme = shinythemes::shinytheme("darkly"),
     tabPanel(
-      title = "select",
+      title = "Dates",
+      HTML("<br><br>"),
+      textOutput("datesPlaceholder"),
+      HTML("<br><br>"),
+      column(
+        width = 12,
+        align = "center",
+        dateRangeInput(
+          inputId = "dateRange", label = "Date Range to Load:",
+          start = "2020-02-01",end = Sys.Date(),
+          min = "2020-02-01", max = Sys.Date()
+        ),
+        HTML("<br>"),
+        HTML("<br>"),
+        actionButton(inputId = "load", label = "Load COVID Data")
+      )
+    ),
+    tabPanel(
+      title = "States",
       fluidRow(
         column(
-          width = 4,
+          width = 12,
           HTML("<br><br>"),
-          textOutput("selectPlaceholder"),
+          textOutput("statesPlaceholder"),
           HTML("<br><br>"),
-          dateRangeInput(
-            inputId = "dateRange", label = "Date Range to Load:",
-            start = "2020-02-01",end = Sys.Date(),
-            min = "2020-02-01", max = Sys.Date()
-          ),
-          actionButton(inputId = "load", label = "Load COVID Data")
-        ),
+        )
+      ),
+      fluidRow(
         column(
-          width = 4,
+          width = 3,
           uiOutput("state_ui")
         ),
         column(
-          width = 4,
-          verbatimTextOutput("summary")
+          width = 8,
+          verbatimTextOutput("summary", placeholder = TRUE)
         )
       )
     ),
     tabPanel(
-      title = "edit",
+      title = "Edit",
       column(
         width = 4,
         HTML("<br><br>"),
@@ -43,7 +54,7 @@ app_ui <- function() {
 
     ),
     tabPanel(
-      title = "graph",
+      title = "Graph",
       column(
         width = 4,
         HTML("<br><br>"),
