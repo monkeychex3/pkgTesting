@@ -6,6 +6,12 @@ app_server <- function(input, output, session) {
   output$graphPlaceholder <- renderText("safety text for graph tab")
   output$datesPlaceholder <- renderText("safety text for dates tab")
 
+  observeEvent(input$load,{
+    output$confirmation <- renderText(
+      "Data successfully loaded!\nPlease proceed to the next tab."
+    )
+  })
+
   cdata <- eventReactive(input$load,{
     temp <- COVID19::covid19(
       country = "us", level = 2, start = sort(input$dateRange)[1],

@@ -19,7 +19,10 @@ app_ui <- function() {
         ),
         HTML("<br>"),
         HTML("<br>"),
-        actionButton(inputId = "load", label = "Load COVID Data")
+        actionButton(inputId = "load", label = "Load COVID Data"),
+        HTML("<br>"),
+        HTML("<br>"),
+        textOutput("confirmation")
       )
     ),
     tabPanel(
@@ -33,13 +36,13 @@ app_ui <- function() {
         )
       ),
       fluidRow(
-        column(
-          width = 3,
-          uiOutput("state_ui")
-        ),
-        column(
-          width = 8,
-          verbatimTextOutput("summary", placeholder = TRUE)
+        sidebarLayout(
+          sidebarPanel(
+            uiOutput("state_ui")
+          ),
+          mainPanel(
+            verbatimTextOutput("summary", placeholder = TRUE)
+          )
         )
       )
     ),
