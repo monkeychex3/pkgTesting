@@ -2,13 +2,17 @@
 
 app_ui <- function() {
   navbarPage(
-    title = "This is Navbar placeholder text",
+    title = "COVID State Comparisons",
     theme = shinythemes::shinytheme("darkly"),
+    #first tab in navbar starts here
     tabPanel(
       title = "Dates",
-      HTML("<br><br>"),
-      textOutput("datesPlaceholder"),
-      HTML("<br><br>"),
+      column(
+        width = 6,
+        HTML("<br><br>"),
+        verbatimTextOutput("datesPlaceholder"),
+        HTML("<br><br>")
+      ),
       column(
         width = 12,
         align = "center",
@@ -19,19 +23,21 @@ app_ui <- function() {
         ),
         HTML("<br>"),
         HTML("<br>"),
-        actionButton(inputId = "load", label = "Load COVID Data"),
+        actionButton(inputId = "loadButton", label = "Load COVID Data"),
         HTML("<br>"),
         HTML("<br>"),
-        textOutput("confirmation")
+        textOutput("confirmation"),
+        tableOutput("newConfirmation")
       )
     ),
+    #second tab
     tabPanel(
       title = "States",
       fluidRow(
         column(
-          width = 12,
+          width = 6,
           HTML("<br><br>"),
-          textOutput("statesPlaceholder"),
+          verbatimTextOutput("statesPlaceholder"),
           HTML("<br><br>"),
         )
       ),
@@ -46,22 +52,24 @@ app_ui <- function() {
         )
       )
     ),
+    #third tab
     tabPanel(
       title = "Edit",
       column(
-        width = 4,
+        width = 6,
         HTML("<br><br>"),
-        textOutput("editPlaceholder"),
+        verbatimTextOutput("editPlaceholder"),
         HTML("<br><br>")
       ),
 
     ),
+    #fourth tab
     tabPanel(
       title = "Graph",
       column(
-        width = 4,
+        width = 6,
         HTML("<br><br>"),
-        textOutput("graphPlaceholder"),
+        verbatimTextOutput("graphPlaceholder"),
         HTML("<br><br>")
       )
     )
