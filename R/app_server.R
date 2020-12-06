@@ -2,8 +2,12 @@
 
 app_server <- function(input, output, session) {
   #section for upper left text in each tab
-  output$datesPlaceholder <- renderText("self note: maybe write \"about\" the
-    app here")
+  #the paste0 is to retain formatting while keeping code lines under 80chars
+  output$datesPlaceholder <- renderText(paste0("Welcome to the COVID State",
+    "Comparisons app.\nHere you can select a date range to inspect.\nThe next",
+    " slides will remember this choice,\nbut you can always come back to ",
+    "update it.\n\nThe first click of this button each day can take a bit",
+    " to load"))
   output$statesPlaceholder <- renderText(paste0("If this page is blank, the",
     " data is still loading.\nPlease allow up to 60 seconds for it to finish.",
     "\n\nOn the checklist below, you can select which states you are\nintested",
@@ -14,7 +18,8 @@ app_server <- function(input, output, session) {
     " current variables.\nBelow that is an interface to allow you to make ",
     "your own\ncombinations of given variables by supplied operations.\n\n",
     "Remember to give them descriptive titles and press the \"save button\""))
-  output$graphPlaceholder <- renderText("safety text for graph tab")
+  output$graphPlaceholder <- renderText(paste0("If this graph is blank,",
+    " remember to select States to view on the \"States\" tab"))
 
   covid <- reactiveValues(rdata = NULL)
 

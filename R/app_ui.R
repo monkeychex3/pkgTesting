@@ -120,7 +120,7 @@ app_ui <- function() {
       title = "Graph",
       fluidRow(
         column(
-          width = 6,
+          width = 7,
           HTML("<br><br>"),
           verbatimTextOutput("graphPlaceholder"),
           HTML("<br><br>")
