@@ -4,6 +4,7 @@ app_ui <- function() {
   navbarPage(
     title = "COVID State Comparisons",
     theme = shinythemes::shinytheme("darkly"),
+
     #first tab in navbar starts here
     tabPanel(
       title = "Dates",
@@ -30,6 +31,7 @@ app_ui <- function() {
         tableOutput("newConfirmation")
       )
     ),
+
     #second tab
     tabPanel(
       title = "States",
@@ -52,27 +54,73 @@ app_ui <- function() {
         )
       )
     ),
+
     #third tab
     tabPanel(
       title = "Edit",
-      column(
-        width = 6,
-        HTML("<br><br>"),
-        verbatimTextOutput("editPlaceholder"),
-        HTML("<br><br>")
+      fluidRow(
+        column(
+          width = 6,
+          HTML("<br><br>"),
+          verbatimTextOutput("editPlaceholder"),
+          HTML("<br><br>")
+        )
       ),
-
+      fluidRow(
+        column(
+          width = 8,
+          textOutput("varNamesExplain"),
+          verbatimTextOutput("varNames")
+        )
+      ),
+      fluidRow(
+        column(
+          width = 2,
+          textInput(inputId = "newVarName",
+            label = "Type your new variable name here")
+        ),
+        column(
+          width = 1,
+          HTML("<br><br>"),
+          h3(textOutput("equalsSign"))
+        ),
+        column(
+          width = 2,
+          HTML("<br>"),
+          uiOutput("lhsVar")
+        ),
+        column(
+          width = 2,
+          HTML("<br>"),
+          selectInput(inputId = "operator",
+            label = "Operation to Perform",
+            choices = c("+","-","*","/"))
+        ),
+        column(
+          width = 2,
+          HTML("<br>"),
+          uiOutput("rhsVar")
+        )
+      ),
+      fluidRow(
+        column(
+          width = 3,
+          actionButton(inputId = "newVarButton",
+            label = "Save New Variable")
+        )
+      )
     ),
+
     #fourth tab
     tabPanel(
       title = "Graph",
       fluidRow(
-      column(
-        width = 6,
-        HTML("<br><br>"),
-        verbatimTextOutput("graphPlaceholder"),
-        HTML("<br><br>")
-      )
+        column(
+          width = 6,
+          HTML("<br><br>"),
+          verbatimTextOutput("graphPlaceholder"),
+          HTML("<br><br>")
+        )
       ),
       fluidRow(
         column(
