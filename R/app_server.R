@@ -61,21 +61,37 @@ app_server <- function(input, output, session) {
   output$equalsSign <- renderText("=")
 
   output$lhsVar <- renderUI({
-    selectInput(inputId = "lhsVar",
+    selectInput(
+      inputId = "lhsVar",
       label = "Existing Variable",
-      choices = names(covid$rdata))
+      choices = #long winded way to say "options OTHER THAN state or date"
+        sort(names(covid$rdata)[!(names(covid$rdata) %in% c("state","date"))]))
   })
 
   output$rhsVar <- renderUI({
     selectInput(inputId = "rhsVar",
       label = "Existing Variable",
-      choices = names(covid$rdata))
+      choices = #long winded way to say "options OTHER THAN state or date"
+        sort(names(covid$rdata)[!(names(covid$rdata) %in% c("date","state"))]))
   })
 
+  output$warning <- renderText(paste0("If this button is not working, ",
+    "the name needs changed.\nPlease do not begin with a number or use ",
+    "symbols other than an underscore"))
+
   observeEvent(input$newVarButton, {
-    shiny::req(input$newVarName)
-    covid$rdata <- covid$rdata %>% mutate(
-      "{input$newVarName}" := !!sym(input$lhsVar)/!!sym(input$rhsVar)
+    # validate(#sanitize input
+    #   need(length(input$newVarName)>0, "Please enter a name for the variable"),
+    #   need(!(input$newVarName[1] %in% c("0","1","2","3","4","5","6","7",
+    #     "8","9")), "Please don't start with a number"),
+      # need(sum(input$newVariableName %in% c("$","\\","/","`","~","&","^","%",
+      #   "!", "|",",",":",";","\"","'","{","}","[","]","=","-","+","*","@"))==0,
+    #   "Bad symbol detected")
+    # )
+      req(input$newVarName)
+      covid$rdata <- covid$rdata %>%
+        mutate("{input$newVarName}" :=
+            get(input$operator)(!!sym(input$lhsVar),!!sym(input$rhsVar))
         )
   })
 
@@ -102,6 +118,7 @@ app_server <- function(input, output, session) {
       aes_string(x = input$x, y = input$y) +
       aes(color = state) +
       geom_line() +
+      ggtitle(input$graphTitle) +
       theme_dark()
       )
 

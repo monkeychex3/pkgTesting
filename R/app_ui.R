@@ -107,6 +107,10 @@ app_ui <- function() {
           width = 3,
           actionButton(inputId = "newVarButton",
             label = "Save New Variable")
+        ),
+        column(
+          width = 4,
+          textOutput("warning")
         )
       )
     ),
@@ -126,7 +130,9 @@ app_ui <- function() {
         column(
           width = 3,
           uiOutput("xUI"),
-          uiOutput("yUI")
+          uiOutput("yUI"),
+          textInput(inputId = "graphTitle",
+            label = "Type Title Here")
         ),
         column(
           width = 7,
