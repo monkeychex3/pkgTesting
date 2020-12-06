@@ -44,7 +44,7 @@ app_ui <- function() {
       fluidRow(
         sidebarLayout(
           sidebarPanel(
-            uiOutput("state_ui")
+            uiOutput("stateUI")
           ),
           mainPanel(
             verbatimTextOutput("summary", placeholder = TRUE)
@@ -66,11 +66,24 @@ app_ui <- function() {
     #fourth tab
     tabPanel(
       title = "Graph",
+      fluidRow(
       column(
         width = 6,
         HTML("<br><br>"),
         verbatimTextOutput("graphPlaceholder"),
         HTML("<br><br>")
+      )
+      ),
+      fluidRow(
+        column(
+          width = 3,
+          uiOutput("xUI"),
+          uiOutput("yUI")
+        ),
+        column(
+          width = 7,
+          plotOutput("graphObj")
+        )
       )
     )
   )

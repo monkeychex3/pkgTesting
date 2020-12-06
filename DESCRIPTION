@@ -21,7 +21,6 @@ Depends:
     ggplot2,
     dplyr
 Imports: 
-    vroom,
     COVID19,
     shinythemes
     

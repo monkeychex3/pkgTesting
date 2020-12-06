@@ -38,7 +38,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-  output$state_ui <- renderUI({
+  output$stateUI <- renderUI({
     checkboxGroupInput(inputId = "state", label = "Choose States:",
       choices = sort(unique(cdata()$state))
     )
@@ -48,5 +48,29 @@ app_server <- function(input, output, session) {
 
 
   #begin logic for "Graph" tab
+
+  #output$options
+
+  output$xUI <- renderUI({
+    selectInput(inputId = "x",
+      label = "x-axis variable:",
+      choices = names(cdata())
+    )
+  })
+
+  output$yUI <- renderUI({
+    selectInput(inputId = "y",
+      label = "y-axis variable:",
+      choices = names(cdata())
+    )
+  })
+
+  output$graphObj <- renderPlot(ggplot(data =
+      cdata()[cdata()$state %in% input$state, ]) +
+      aes_string(x = input$x, y = input$y) +
+      aes(color = state) +
+      geom_line() +
+      theme_dark()
+      )
 
 }
