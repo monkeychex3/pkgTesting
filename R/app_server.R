@@ -16,18 +16,19 @@ app_server <- function(input, output, session) {
     "Remember to give them descriptive titles and press the \"save button\""))
   output$graphPlaceholder <- renderText("safety text for graph tab")
 
+  covid <- reactiveValues(rdata = NULL)
+
   #begin logic for "Dates" tab
 
-  cdata <- eventReactive(input$loadButton, {
-  #observeEvent(input$loadButton, {
+  observeEvent(input$loadButton, {
     temp <- COVID19::covid19(
       country = "us", level = 2, start = sort(input$dateRange)[1],
       end = sort(input$dateRange)[2], verbose = FALSE
     )
     temp <- temp[ , c(2:10,29)] #discards id and mostly NA columns
     names(temp)[10] <- "state" #renamed from administrative_area_level_2
-    temp #return temp to save AS cdata
-    #cdata <- temp
+    #temp #return temp to save AS cdata
+    covid$rdata <- temp
   })
 
   observeEvent(input$loadButton, {
@@ -41,13 +42,13 @@ app_server <- function(input, output, session) {
   output$summary <- renderPrint({
     width = 7
     summary(
-      cdata()[cdata()$state %in% input$state, ]
+      covid$rdata[covid$rdata$state %in% input$state, ]
     )
   })
 
   output$stateUI <- renderUI({
     checkboxGroupInput(inputId = "state", label = "Choose States:",
-      choices = sort(unique(cdata()$state))
+      choices = sort(unique(covid$rdata$state))
     )
   })
 
@@ -55,25 +56,25 @@ app_server <- function(input, output, session) {
 
   output$varNamesExplain <- renderText("These are the current variables")
 
-  output$varNames <- renderPrint(names(cdata()))
+  output$varNames <- renderPrint(names(covid$rdata))
 
   output$equalsSign <- renderText("=")
 
   output$lhsVar <- renderUI({
     selectInput(inputId = "lhsVar",
       label = "Existing Variable",
-      choices = names(cdata()))
+      choices = names(covid$rdata))
   })
 
   output$rhsVar <- renderUI({
     selectInput(inputId = "rhsVar",
       label = "Existing Variable",
-      choices = names(cdata()))
+      choices = names(covid$rdata))
   })
 
   observeEvent(input$newVarButton, {
     shiny::req(input$newVarName)
-    cdata <- cdata() %>% mutate(
+    covid$rdata <- covid$rdata %>% mutate(
       "{input$newVarName}" := !!sym(input$lhsVar)/!!sym(input$rhsVar)
         )
   })
@@ -85,19 +86,19 @@ app_server <- function(input, output, session) {
   output$xUI <- renderUI({
     selectInput(inputId = "x",
       label = "x-axis variable:",
-      choices = names(cdata())
+      choices = names(covid$rdata)
     )
   })
 
   output$yUI <- renderUI({
     selectInput(inputId = "y",
       label = "y-axis variable:",
-      choices = names(cdata())
+      choices = names(covid$rdata)
     )
   })
 
   output$graphObj <- renderPlot(ggplot(data =
-      cdata()[cdata()$state %in% input$state, ]) +
+      covid$rdata[covid$rdata$state %in% input$state, ]) +
       aes_string(x = input$x, y = input$y) +
       aes(color = state) +
       geom_line() +
