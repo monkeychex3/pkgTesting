@@ -121,5 +121,4 @@ app_server <- function(input, output, session) {
       ggtitle(input$graphTitle) +
       theme_dark()
       )
-
 }

@@ -2,7 +2,7 @@
 
 app_ui <- function() {
   navbarPage(
-    title = "COVID State Comparisons",
+    title = HTML("<b><u>COVID State Comparisons</u></b>"),
     theme = shinythemes::shinytheme("darkly"),
 
     #first tab in navbar starts here
@@ -139,6 +139,11 @@ app_ui <- function() {
           plotOutput("graphObj")
         )
       )
-    )
+    ),
+    #this makes the top right section of the navBar
+    tags$script(HTML(paste0("var header = $('.navbar> .container-fluid');",
+      "header.append('<div style=\"float:right; margin-top : 10px\">",
+      "by Adam Coger<br>acoger@bgsu.edu</div>');
+      console.log(header)")))
   )
 }
