@@ -39,7 +39,7 @@ pkgTesting::runApp()
     dynamically to changes made. So returning to previous tabs is not
     discouraged.
 
-![](D:\\Users\\monke\\OneDrive\\Desktop\\shinyApps\\pkgTesting\\navExample.jpg)
+![](navExample.jpg)
 
 <br>
 
@@ -47,7 +47,7 @@ pkgTesting::runApp()
     range to load in. On button press, it downloads the data and saves
     into into a data frame.
 
-![](D:\\Users\\monke\\OneDrive\\Desktop\\shinyApps\\pkgTesting\\datesExample.jpg)
+![](datesExample.jpg)
 
 <br>
 
@@ -56,7 +56,7 @@ pkgTesting::runApp()
     the right are cumulative of the selected states, but this is just to
     verify that the checklist is functioning properly to the user.
 
-![](D:\\Users\\monke\\OneDrive\\Desktop\\shinyApps\\pkgTesting\\statesExample.jpg)
+![](statesExample.jpg)
 
 <br>
 
@@ -65,13 +65,12 @@ pkgTesting::runApp()
     allowed to chain together new variables as operations on other
     variables they have created as well.
 
-![](D:\\Users\\monke\\OneDrive\\Desktop\\shinyApps\\pkgTesting\\editExample.jpg)
-<br>
+![](editExample.jpg) <br>
 
 5.  This tab is for the visualization and comparison of variables
     (included or made).
 
-![](D:\\Users\\monke\\OneDrive\\Desktop\\shinyApps\\pkgTesting\\graphExample.jpg)
+![](graphExample.jpg)
 
 <br>
 
