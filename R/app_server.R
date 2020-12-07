@@ -4,8 +4,8 @@ app_server <- function(input, output, session) {
   #section for upper left text in each tab
   #the paste0 is to retain formatting while keeping code lines under 80chars
   output$datesPlaceholder <- renderText(paste0("Welcome to the COVID State",
-    "Comparisons app.\nHere you can select a date range to inspect.\nThe next",
-    " slides will remember this choice,\nbut you can always come back to ",
+    " Comparisons app.\nHere you can select a date range to inspect.\nThe next",
+    " tabs will remember this choice,\nbut you can always come back to ",
     "update it.\n\nThe first click of this button each day can take a bit",
     " to load"))
   output$statesPlaceholder <- renderText(paste0("If this page is blank, the",
@@ -24,7 +24,6 @@ app_server <- function(input, output, session) {
   covid <- reactiveValues(rdata = NULL)
 
   #begin logic for "Dates" tab
-
   observeEvent(input$loadButton, {
     temp <- COVID19::covid19(
       country = "us", level = 2, start = sort(input$dateRange)[1],
