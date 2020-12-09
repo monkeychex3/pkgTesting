@@ -31,13 +31,27 @@ app_server <- function(input, output, session) {
     )
     temp <- temp[ , c(2:10,29)] #discards id and mostly NA columns
     names(temp)[10] <- "state" #renamed from administrative_area_level_2
-    #temp #return temp to save AS cdata
+    #here is where I make non-cumulative variables
+    temp <- temp %>%
+      group_by(state) %>%
+      arrange(date, .by_group = TRUE) %>%
+      mutate(
+        deathsPerDay = deaths - dplyr::lag(deaths),
+        casesPerDay = confirmed - dplyr::lag(confirmed),
+        testsPerDay = tests - dplyr::lag(tests),
+        recoveriesPerDay = recovered - dplyr::lag(recovered)
+      )
+    #here is where we replace negative daily variables
+    #for some of the original cumulative variables decline somehow
+    temp <- temp %>%
+      mutate_each(funs(replace(., .<0, NA)))
+    #save results (temp still exists)
     covid$rdata <- temp
   })
 
   observeEvent(input$loadButton, {
     output$confirmation <- renderText(
-      "Data load successfully initiated!\nPlease proceed to the next tab."
+      "Data loaded successfully!"
     )
   })
 
@@ -121,7 +135,7 @@ app_server <- function(input, output, session) {
       covid$rdata[covid$rdata$state %in% input$state, ]) +
       aes_string(x = input$x, y = input$y) +
       aes(color = state) +
-      geom_line(size = input$lineThickness) +
+      geom_line(size = input$lineThickness, na.rm = TRUE) +
       ggtitle(input$graphTitle) +
       theme_dark()
       )

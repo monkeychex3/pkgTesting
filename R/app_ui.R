@@ -129,10 +129,10 @@ app_ui <- function() {
       fluidRow(
         column(
           width = 3,
-          uiOutput("xUI"),
-          uiOutput("yUI"),
           textInput(inputId = "graphTitle",
             label = "Type Title Here"),
+          uiOutput("xUI"),
+          uiOutput("yUI"),
           sliderInput(inputId = "lineThickness",
             label = "Line Thickness",
             min = .5,
