@@ -121,7 +121,7 @@ app_server <- function(input, output, session) {
       covid$rdata[covid$rdata$state %in% input$state, ]) +
       aes_string(x = input$x, y = input$y) +
       aes(color = state) +
-      geom_line() +
+      geom_line(size = input$lineThickness) +
       ggtitle(input$graphTitle) +
       theme_dark()
       )

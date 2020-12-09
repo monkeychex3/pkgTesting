@@ -132,7 +132,13 @@ app_ui <- function() {
           uiOutput("xUI"),
           uiOutput("yUI"),
           textInput(inputId = "graphTitle",
-            label = "Type Title Here")
+            label = "Type Title Here"),
+          sliderInput(inputId = "lineThickness",
+            label = "Line Thickness",
+            min = .5,
+            max = 5,
+            value = 1,
+            step = .5)
         ),
         column(
           width = 7,
