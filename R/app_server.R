@@ -17,7 +17,9 @@ app_server <- function(input, output, session) {
   output$editPlaceholder <- renderText(paste0("Below you can see the names of",
     " current variables.\nBelow that is an interface to allow you to make ",
     "your own\ncombinations of given variables by supplied operations.\n\n",
-    "Remember to give them descriptive titles and press the \"save button\""))
+    "Remember to give them descriptive titles and press the \"save button\"\n",
+    "\nBetter descriptions of variables can be found at",
+    " https://covid19datahub.io/articles/doc/data.html"))
   output$graphPlaceholder <- renderText(paste0("If this graph is blank,",
     " remember to select States to view on the \"States\" tab"))
 
