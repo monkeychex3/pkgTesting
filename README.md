@@ -18,6 +18,13 @@ practice for “writing a shiny app as a package”.
 
 ## Installation
 
+<u>For non-R users (on Windows)</u>:
+
+You can download just the setup file and it should place a shortcut on
+your desktop at the end of the installation.
+
+<u>For general R users</u>:
+
 You can install the development version from
 [GitHub](https://github.com/) with:
 
