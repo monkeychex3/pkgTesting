@@ -1,4 +1,6 @@
 #' @import shiny
+#' @import ggplot2
+#' @import dplyr
 
 app_server <- function(input, output, session) {
   #section for upper left text in each tab
