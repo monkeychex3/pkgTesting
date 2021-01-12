@@ -49,7 +49,11 @@ app_server <- function(input, output, session) {
     #here is where we replace negative daily variables
     #for some of the original cumulative variables decline somehow
     temp <- temp %>%
-      mutate_each(funs(replace(., .<0, NA)))
+      mutate(
+        across(
+          .cols = where(is.numeric),
+          .fns = ~replace(., . < 0, NA))
+      )
     #save results (temp still exists)
     covid$rdata <- temp
   })
