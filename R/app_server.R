@@ -33,8 +33,12 @@ app_server <- function(input, output, session) {
       country = "us", level = 2, start = sort(input$dateRange)[1],
       end = sort(input$dateRange)[2], verbose = FALSE
     )
-    temp <- temp[ , c(2:11,30)] #discards id and mostly NA columns
-    names(temp)[names(temp)=="administrative_area_level_2"] <- "state"
+    temp <- temp[ , c("date", "vaccines", "tests", "confirmed", "recovered",
+      "deaths", "hosp", "vent", "icu", "population",
+      "administrative_area_level_2")]
+      #2:11,30)] #discards id and mostly NA columns
+    #names(temp)[names(temp)=="administrative_area_level_2"] <- "state"
+    temp <- dplyr::rename(temp, state = administrative_area_level_2)
     #the above line renamed administrative_area_level_2 to state
     #here is where I make non-cumulative variables
     temp <- temp %>%
