@@ -30,7 +30,7 @@ app_server <- function(input, output, session) {
   #begin logic for "Dates" tab
   observeEvent(input$loadButton, {
     temp <- COVID19::covid19(
-      country = "us", level = 2, start = sort(input$dateRange)[1],
+      country = "US", level = 2, start = sort(input$dateRange)[1],
       end = sort(input$dateRange)[2], verbose = FALSE
     )
     temp <- temp[ , c("date", "vaccines", "tests", "confirmed", "recovered",
