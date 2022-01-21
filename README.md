@@ -20,8 +20,9 @@ practice for “writing a shiny app as a package”.
 
 <u>For non-R users (on Windows)</u>:
 
-You can download just the setup file and it should place a shortcut on
-your desktop at the end of the installation.
+Currently Broken: Sorry<br> ~~You can download just the setup file and
+it should place a shortcut on your desktop at the end of the
+installation.~~
 
 <u>For general R users</u>:
 
