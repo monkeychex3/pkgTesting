@@ -11,8 +11,8 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 Author: Adam Coger
 
-This package is to hold a Shiny app for making and viewing graphs about
-COVID-19 in the United States. It does access the web, so it is of no
+This package is to hold a Shiny app for making and viewing graphs of
+COVID-19 data in the United States. It does access the web, so it is of no
 use while offline. The name “pkgTesting” came from trying to use this as
 practice for “writing a shiny app as a package”.
 
@@ -27,7 +27,7 @@ installation.~~
 <u>For general R users</u>:
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/) in R with the folling lines of code:
 
 ``` r
 devtools::install_github("monkeychex3/pkgTesting")
@@ -41,7 +41,7 @@ pkgTesting::runApp()
 
 ## Walkthrough
 
-1.  This app’s tabs are navigated between through the navigation bar. It
+1.  This app’s tabs are navigated using the navigation bar. It
     is only a recommended order to proceed in, but once the data is
     loaded in and states are selected, everything will update
     dynamically to changes made. So returning to previous tabs is not
@@ -53,7 +53,8 @@ pkgTesting::runApp()
 
 2.  Below is the first tab shown when launched. It is to select a date
     range to load in. On button press, it downloads the data and saves
-    into into a data frame.
+    into into a data frame. There is currently no "loading message", but
+    will show an error if one occurs.
 
 ![](datesExample.jpg)
 
